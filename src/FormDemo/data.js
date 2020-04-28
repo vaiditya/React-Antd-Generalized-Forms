@@ -1,41 +1,79 @@
 import React from "react";
-import { Input, Button } from "antd";
+import { Input, Button, InputNumber, DatePicker } from "antd";
 const fields = [
   {
     component: <Input />,
-    name: "username",
-    label: "User Name",
-    type: "string",
+    name: "name",
+    label: "Name",
+    validateTrigger: "onSubmit",
     validations: {
       required: true
     }
   },
   {
-    component: <Input.Password />,
-    name: "password",
-    label: "Password",
-    type: "string",
+    component: <Input />,
+    name: "email",
+    label: "Email",
+    // validateTrigger: "onSubmit",
+    validations: {
+      nested: { type: "email" },
+      required: true
+    }
+  },
+  {
+    component: <InputNumber />,
+    name: "age",
+    label: "Age",
     validateTrigger: "onSubmit",
     validations: {
-      required: true,
-      min: 8,
-      custom: {
-        condition: "sha",
-        message: "Password should have letter 'a'"
+      nested: {
+        type: "number",
+        min: 0,
+        max: 99
       }
     }
   },
   {
-    component: <Input.Password />,
-    name: "confirm_password",
-    label: "Re-type",
-    type: "string",
+    component: <DatePicker format={"MM/DD/YYYY"} />,
+    name: "doj",
+    label: "Date of joining",
+    validateTrigger: "onSubmit",
+    validations: {
+      nested: { type: "date" }
+    }
+  },
+
+  {
+    component: <Input />,
+    name: "website",
+    label: "Website",
+    validateTrigger: "onSubmit",
+    validations: {
+      nested: { type: "url" }
+    }
+  },
+  {
+    component: <Input.TextArea />,
+    name: "intro",
+    label: "Introduction",
+    validateTrigger: "onSubmit"
+  },
+  {
+    component: <label>ATSHT</label>,
+    name: "captcha_text",
+    label: "CAPTCHA"
+  },
+  {
+    component: <Input />,
+    name: "captcha",
+    label: "Enter captcha",
+    validateTrigger: "onSubmit",
     validations: {
       required: true,
       custom: {
-        dependency: "password",
+        dependency: "captcha_text",
         condition: "eq",
-        message: "Passwords don't match"
+        message: "Captcha don't match"
       }
     }
   },

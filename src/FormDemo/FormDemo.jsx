@@ -13,6 +13,7 @@ function FormComponent(props) {
 
   const onFinish = values => {
     console.log("Success", values);
+    props.onSubmit(values);
   };
   const onFinishFail = values => {
     console.log("Failed", values);
@@ -26,6 +27,8 @@ function FormComponent(props) {
         onFinish={onFinish}
         onFinishFailed={onFinishFail}
         validateMessages={defaultValidateMessages}
+        onValuesChange={e => props.onChange(e)}
+        initialValues={{ captcha_text: "ATSHT" }}
       >
         {props.fields.map(data => (
           <Form.Item
@@ -33,9 +36,13 @@ function FormComponent(props) {
             rules={
               data.validations &&
               Object.keys(data.validations).map(rule => {
-                if (rule !== "custom")
+                if (rule !== "custom" && rule !== "nested")
                   return {
                     [rule]: data.validations[rule]
+                  };
+                else if (rule === "nested")
+                  return {
+                    ...data.validations.nested
                   };
                 else {
                   return ({ getFieldValue }) => ({
