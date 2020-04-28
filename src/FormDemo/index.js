@@ -1,8 +1,9 @@
 import React from "react";
-import FormDemoComponent from "./FormDemo";
+import FormComponent from "./FormDemo";
+import { fields } from "./data";
 
 function FormDemo() {
-  return <FormDemoComponent />;
+  return <FormComponent fields={fields} />;
 }
 
 export default FormDemo;

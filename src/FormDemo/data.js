@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "antd";
+import { Input, Button } from "antd";
 const fields = [
   {
     component: <Input />,
@@ -38,6 +38,13 @@ const fields = [
         message: "Passwords don't match"
       }
     }
+  },
+  {
+    component: (
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    )
   }
 ];
 export { fields };
