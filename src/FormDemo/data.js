@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button, InputNumber, DatePicker } from "antd";
+import { Input, Button, InputNumber, DatePicker, Radio } from "antd";
 const fields = [
   {
     component: <Input />,
@@ -32,6 +32,14 @@ const fields = [
         max: 99
       }
     }
+  },
+  {
+    component: (
+      <Radio.Group>
+        <Radio value={1}>Male</Radio>
+        <Radio value={2}>Female</Radio>
+      </Radio.Group>
+    )
   },
   {
     component: <DatePicker format={"MM/DD/YYYY"} />,
