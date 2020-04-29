@@ -34,6 +34,7 @@ const fields = [
     }
   },
   {
+    name: "gender",
     component: (
       <Radio.Group>
         <Radio value={1}>Male</Radio>

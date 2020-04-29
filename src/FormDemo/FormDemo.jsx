@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { Form } from "antd";
+import { Form, Col } from "antd";
 import { customValidationRules, defaultValidateMessages } from "./config";
 
 const layout = {
@@ -31,41 +31,43 @@ function FormComponent(props) {
         initialValues={{ captcha_text: "ATSHT" }}
       >
         {props.fields.map(data => (
-          <Form.Item
-            {...data}
-            rules={
-              data.validations &&
-              Object.keys(data.validations).map(rule => {
-                if (rule !== "custom" && rule !== "nested")
-                  return {
-                    [rule]: data.validations[rule]
-                  };
-                else if (rule === "nested")
-                  return {
-                    ...data.validations.nested
-                  };
-                else {
-                  return ({ getFieldValue }) => ({
-                    validator(rule, value) {
-                      if (
-                        !value ||
-                        customValidationRules(
-                          value,
-                          getFieldValue(data.validations.custom.dependency),
-                          data.validations.custom.condition
-                        )
-                      ) {
-                        return Promise.resolve();
+          <Col span={data.name==='age'|| data.name==='gender' || data.name==='doj'?8:24}>
+            <Form.Item
+              {...data}
+              rules={
+                data.validations &&
+                Object.keys(data.validations).map(rule => {
+                  if (rule !== "custom" && rule !== "nested")
+                    return {
+                      [rule]: data.validations[rule]
+                    };
+                  else if (rule === "nested")
+                    return {
+                      ...data.validations.nested
+                    };
+                  else {
+                    return ({ getFieldValue }) => ({
+                      validator(rule, value) {
+                        if (
+                          !value ||
+                          customValidationRules(
+                            value,
+                            getFieldValue(data.validations.custom.dependency),
+                            data.validations.custom.condition
+                          )
+                        ) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(data.validations.custom.message);
                       }
-                      return Promise.reject(data.validations.custom.message);
-                    }
-                  });
-                }
-              })
-            }
-          >
-            {data.component}
-          </Form.Item>
+                    });
+                  }
+                })
+              }
+            >
+              {data.component}
+            </Form.Item>
+          </Col>
         ))}
       </Form>
     </div>
