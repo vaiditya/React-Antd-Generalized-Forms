@@ -8,6 +8,10 @@
   margin: auto;
   form.ant-form{
     width: 100%;
+    .ant-row{
+      align-items: center;
+      flex-wrap: wrap;
+    }
     .ant-form-item-label{
       line-height: 14px; 
     }
@@ -28,6 +32,19 @@
     input, .ant-input-number, .ant-picker, textarea {
       border-radius: 5px;
       line-height: 29px;
+    }
+    .ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner{
+      border-color: #95989A;
+    }
+    .ant-radio-checked .ant-radio-inner{
+      border-color: #95989A;
+    }
+    .ant-radio-checked::after{
+      border: 1px solid #95989A;
+    }
+    .ant-radio-inner::after{
+      background-color: #FF4E00;
+      border-color: #95989A;
     }
   }
 }

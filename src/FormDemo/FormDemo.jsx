@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { Form, Col } from "antd";
+import { Form, Col, Row } from "antd";
 import { customValidationRules, defaultValidateMessages } from "./config";
 
 const layout = {
@@ -30,6 +30,7 @@ function FormComponent(props) {
         onValuesChange={e => props.onChange(e)}
         initialValues={{ captcha_text: "ATSHT" }}
       >
+        <Row>
         {props.fields.map(data => (
           <Col span={data.name==='age'|| data.name==='gender' || data.name==='doj'?8:24}>
             <Form.Item
@@ -69,6 +70,7 @@ function FormComponent(props) {
             </Form.Item>
           </Col>
         ))}
+        </Row>
       </Form>
     </div>
   );
