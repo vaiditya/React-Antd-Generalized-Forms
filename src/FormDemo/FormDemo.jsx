@@ -4,7 +4,7 @@ import { Form } from "antd";
 import { customValidationRules, defaultValidateMessages } from "./config";
 
 const layout = {
-  labelCol: { span: 8 },
+  labelCol: { span: 24 },
   wrapperCol: { span: 16 }
 };
 

@@ -2,5 +2,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  // height: 100vh;
+  width: 100%;
+  padding: 0 15px;
+  margin: auto;
+  form.ant-form{
+    width: 100%;
+    .ant-form-item-label{
+      line-height: 14px; 
+    }
+    label{
+      color: #8E8D8A;
+      font-size: 11px;
+      height: auto;
+    }
+    .ant-input-number-input{
+      height: auto;
+      padding: 2px 7px;
+    }
+    .ant-input-affix-wrapper{
+      border-radius: 5px;
+      line-height: 29px;
+      height: auto;
+    }
+    input, .ant-input-number, .ant-picker, textarea {
+      border-radius: 5px;
+      line-height: 29px;
+    }
+  }
 }
