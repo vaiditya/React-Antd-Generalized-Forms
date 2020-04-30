@@ -5,6 +5,10 @@ const fields = [
     component: <Input />,
     name: "name",
     label: "Name",
+    layout: {
+      span: 24
+    },
+
     validateTrigger: "onSubmit",
     validations: {
       required: true
@@ -14,6 +18,9 @@ const fields = [
     component: <Input />,
     name: "email",
     label: "Email",
+    layout: {
+      span: 24
+    },
     // validateTrigger: "onSubmit",
     validations: {
       nested: { type: "email" },
@@ -24,6 +31,10 @@ const fields = [
     component: <InputNumber />,
     name: "age",
     label: "Age",
+    layout: {
+      md: { span: 3, offset: 5 },
+      xs: 24
+    },
     validateTrigger: "onSubmit",
     validations: {
       nested: {
@@ -35,6 +46,10 @@ const fields = [
   },
   {
     name: "gender",
+    layout: {
+      md: 8,
+      xs: 24
+    },
     component: (
       <Radio.Group>
         <Radio value={1}>Male</Radio>
@@ -44,6 +59,10 @@ const fields = [
   },
   {
     component: <DatePicker format={"MM/DD/YYYY"} />,
+    layout: {
+      md: 8,
+      xs: 24
+    },
     name: "doj",
     label: "Date of joining",
     validateTrigger: "onSubmit",
@@ -54,6 +73,9 @@ const fields = [
 
   {
     component: <Input />,
+    layout: {
+      span: 24
+    },
     name: "website",
     label: "Website",
     validateTrigger: "onSubmit",
@@ -63,17 +85,26 @@ const fields = [
   },
   {
     component: <Input.TextArea />,
+    layout: {
+      span: 24
+    },
     name: "intro",
     label: "Introduction",
     validateTrigger: "onSubmit"
   },
   {
     component: <label>ATSHT</label>,
+    layout: {
+      span: 12
+    },
     name: "captcha_text",
     label: "CAPTCHA"
   },
   {
     component: <Input />,
+    layout: {
+      span: 12
+    },
     name: "captcha",
     label: "Enter captcha",
     validateTrigger: "onSubmit",

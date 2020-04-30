@@ -1,11 +1,11 @@
 import React from "react";
 import "./styles.scss";
-import { Form, Col } from "antd";
+import { Form, Col, Row } from "antd";
 import { customValidationRules, defaultValidateMessages } from "./config";
 
 const layout = {
   labelCol: { span: 24 },
-  wrapperCol: { span: 16 }
+  wrapperCol: { span: 24 }
 };
 
 function FormComponent(props) {
@@ -30,45 +30,49 @@ function FormComponent(props) {
         onValuesChange={e => props.onChange(e)}
         initialValues={{ captcha_text: "ATSHT" }}
       >
-        {props.fields.map(data => (
-          <Col span={data.name==='age'|| data.name==='gender' || data.name==='doj'?8:24}>
-            <Form.Item
-              {...data}
-              rules={
-                data.validations &&
-                Object.keys(data.validations).map(rule => {
-                  if (rule !== "custom" && rule !== "nested")
-                    return {
-                      [rule]: data.validations[rule]
-                    };
-                  else if (rule === "nested")
-                    return {
-                      ...data.validations.nested
-                    };
-                  else {
-                    return ({ getFieldValue }) => ({
-                      validator(rule, value) {
-                        if (
-                          !value ||
-                          customValidationRules(
-                            value,
-                            getFieldValue(data.validations.custom.dependency),
-                            data.validations.custom.condition
-                          )
-                        ) {
-                          return Promise.resolve();
+        <Row>
+          {props.fields.map(data => (
+            <Col {...data.layout}>
+              <Form.Item
+                {...data}
+                rules={
+                  data.validations &&
+                  Object.keys(data.validations).map(rule => {
+                    if (rule !== "custom" && rule !== "nested")
+                      return {
+                        [rule]: data.validations[rule]
+                      };
+                    else if (rule === "nested")
+                      return {
+                        ...data.validations.nested
+                      };
+                    else {
+                      return ({ getFieldValue }) => ({
+                        validator(rule, value) {
+                          if (
+                            !value ||
+                            customValidationRules(
+                              value,
+                              getFieldValue(data.validations.custom.dependency),
+                              data.validations.custom.condition
+                            )
+                          ) {
+                            return Promise.resolve();
+                          }
+                          return Promise.reject(
+                            data.validations.custom.message
+                          );
                         }
-                        return Promise.reject(data.validations.custom.message);
-                      }
-                    });
-                  }
-                })
-              }
-            >
-              {data.component}
-            </Form.Item>
-          </Col>
-        ))}
+                      });
+                    }
+                  })
+                }
+              >
+                {data.component}
+              </Form.Item>
+            </Col>
+          ))}
+        </Row>
       </Form>
     </div>
   );
